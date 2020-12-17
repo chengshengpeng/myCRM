@@ -161,7 +161,7 @@
             <port>8080</port>
             <path>/crm</path>
             <uriEncoding>UTF-8</uriEncoding>
-          </configuration>
+        </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
