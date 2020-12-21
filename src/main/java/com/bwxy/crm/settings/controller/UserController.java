@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @ProjectName: crm
@@ -26,7 +29,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public String login(User user, Model model, HttpServletRequest request){
         try{
             //获取客户端ip地址
@@ -44,5 +47,17 @@ public class UserController {
             model.addAttribute("mess",e.getMessage());
         }
         return "../../login";
+    }
+    //退出功能
+    @RequestMapping("/logOut")
+    public String logOut(HttpSession session){
+        session.removeAttribute(CrmConstants.LOGIN_USER);
+        return "../../login";
+    }
+    //异步查询所有用户信息
+    @RequestMapping("/queryAllUser")
+    public List<User> queryAllUser(){
+
+        return userService.queryAllUser();
     }
 }

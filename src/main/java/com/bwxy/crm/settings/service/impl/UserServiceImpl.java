@@ -10,6 +10,8 @@ import com.bwxy.crm.settings.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ProjectName: crm
  * @Package: com.bwxy.crm.settings.service.impl
@@ -50,7 +52,7 @@ public class UserServiceImpl implements UserService {
             if (user.getExpireTime().compareTo(DateTimeUtil.getSysTime()) <0) {
                 throw new CrmException(CrmExceptionEnum.LOGIN_EXPIRE_EXCEPTION);
             }
-            //判断该用户是否失效
+            //判断该用户是否被锁定
             if ("0".equals(user.getLockState())) {
                 throw new CrmException(CrmExceptionEnum.LOGIN_LOCK_EXCEPTION);
             }
@@ -63,5 +65,10 @@ public class UserServiceImpl implements UserService {
         }
         //登录用户的所有条件都满足了
         return user;
+    }
+
+    @Override
+    public List<User> queryAllUser() {
+        return userMapper.selectAll();
     }
 }

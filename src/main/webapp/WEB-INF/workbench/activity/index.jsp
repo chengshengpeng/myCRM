@@ -1,25 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link href="../../jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<link href="../../jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+<link href="/crm/jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="/crm/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 
-<script type="text/javascript" src="../../jquery/jquery-1.11.1-min.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="/crm/jquery/jquery-1.11.1-min.js"></script>
+<script type="text/javascript" src="/crm/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/crm/jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
+    <%--导入分页插件--%>
+    <link href="/crm/jquery/bs_pagination/jquery.bs_pagination.min.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/crm/jquery/bs_pagination/en.js"></script>
+    <script type="text/javascript" src="/crm/jquery/bs_pagination/jquery.bs_pagination.min.js"></script>
 
-<script type="text/javascript">
 
-	$(function(){
-		
-		
-		
-	});
-	
-</script>
 </head>
 <body>
 
@@ -35,15 +32,15 @@
 				</div>
 				<div class="modal-body">
 				
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action="/crm/workbench/activity">
 					
 						<div class="form-group">
 							<label for="create-marketActivityOwner" class="col-sm-2 control-label">所有者<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="create-marketActivityOwner">
-								  <option>zhangsan</option>
+								 <%-- <option>zhangsan</option>
 								  <option>lisi</option>
-								  <option>wangwu</option>
+								  <option>wangwu</option>--%>
 								</select>
 							</div>
                             <label for="create-marketActivityName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
@@ -171,14 +168,14 @@
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">名称</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" name="name" >
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">所有者</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" name="owner">
 				    </div>
 				  </div>
 
@@ -186,23 +183,23 @@
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">开始日期</div>
-					  <input class="form-control" type="text" id="startTime" />
+					  <input class="form-control" type="text" id="startTime" name="startTime" />
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">结束日期</div>
-					  <input class="form-control" type="text" id="endTime">
+					  <input class="form-control" type="text" id="endTime" name="endTime">
 				    </div>
 				  </div>
 				  
-				  <button type="submit" class="btn btn-default">查询</button>
+				  <button type="button" class="btn btn-default" id="activityQueryBtn">查询</button>
 				  
 				</form>
 			</div>
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 5px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createActivityModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
+				  <button type="button" onclick="queryAllUser()" class="btn btn-primary" data-toggle="modal" data-target="#createActivityModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
 				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
@@ -219,8 +216,8 @@
 							<td>结束日期</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr class="active">
+					<tbody id="activityBody">
+						<%--<tr class="active">
 							<td><input type="checkbox" /></td>
 							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">发传单</a></td>
                             <td>zhangsan</td>
@@ -233,44 +230,15 @@
                             <td>zhangsan</td>
                             <td>2020-10-10</td>
                             <td>2020-10-20</td>
-                        </tr>
+                        </tr>--%>
 					</tbody>
 				</table>
 			</div>
 			
 			<div style="height: 50px; position: relative;top: 30px;">
-				<div>
-					<button type="button" class="btn btn-default" style="cursor: default;">共<b>50</b>条记录</button>
-				</div>
-				<div class="btn-group" style="position: relative;top: -34px; left: 110px;">
-					<button type="button" class="btn btn-default" style="cursor: default;">显示</button>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							10
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">20</a></li>
-							<li><a href="#">30</a></li>
-						</ul>
-					</div>
-					<button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
-				</div>
-				<div style="position: relative;top: -88px; left: 285px;">
-					<nav>
-						<ul class="pagination">
-							<li class="disabled"><a href="#">首页</a></li>
-							<li class="disabled"><a href="#">上一页</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">下一页</a></li>
-							<li class="disabled"><a href="#">末页</a></li>
-						</ul>
-					</nav>
-				</div>
+
+                <div id="activityPage"></div>
+
 			</div>
 			
 		</div>
@@ -278,3 +246,103 @@
 	</div>
 </body>
 </html>
+<script>
+	//点击新建按钮，异步查询所有用户信息
+	function queryAllUser(){
+		$.ajax({
+			url : '/crm/queryUser',
+			data :'',
+			type :'get',
+			dataType : 'json',
+			success : function(data){
+				for(var i = 0; i<data.length;i++){
+					$('create-marketActivityOwner').append("<option value="+data[i].id+">"+data[i].name+"</option>\n" )
+				}
+			}
+		});
+	}
+    //点击查询按钮，出发点击事件，调用refresh函数开始查询数据
+    $('#activityQueryBtn').click(function () {
+        refresh(1,3);
+    });
+	//第一次进入列表页面
+	refresh(1,3);
+	//刷新页面的方法
+	function refresh(page,pageSize){
+		//异步查询所有市场活动的信息
+		$.ajax({
+			url : '${pageContext.request.contextPath}/workbench/activity/list',
+			data :{
+				'page':page,
+				'pageSize':pageSize,
+				'name':$('input[name=name]').val(),//根据name属性取值
+				'owner':$('input[owner=owner]').val(),
+				'startDate':$('#startTime').val(),
+				'endDate':$('#endTime').val()
+			},
+			type :'get',
+			dataType : 'json',
+			success : function(data){
+				//清空上一次动态拼接的内容
+				$('#activityBody').html("");
+				//遍历出所有的市场活动信息
+				//console.log(data)   //data  就是ResultVo
+				//data中有好多数据，在这里取出所有的市场活动信息的数据 dataList
+				var dataList = data.pageInfo.list;
+				for(var i=0; i<dataList.length;i++){
+					//获取到展示市场活动信息的表格（通过id获取），然后将遍历出的信息追加到表格中
+					$('#activityBody').append("<tr class=\"active\">\n" +
+							"\t\t\t\t\t\t\t<td><input type=\"checkbox\" /></td>\n" +
+							"\t\t\t\t\t\t\t<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='detail.html';\">"+dataList[i].name+"</a></td>\n" +
+							"                            <td>"+dataList[i].owner+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+dataList[i].startDate+"</td>\n" +
+							"\t\t\t\t\t\t\t<td>"+dataList[i].endDate+"-10-20</td>\n" +
+							"\t\t\t\t\t\t</tr>")
+				}
+				//利用分页插件，查询第一页数据
+				$("#activityPage").bs_pagination({
+					//此时，下面分页所需要的数据信息都包含在data中，所以一次取出
+					currentPage: data.pageInfo.pageNum, // 页码
+					rowsPerPage: data.pageInfo.pageSize, // 每页显示的记录条数
+					maxRowsPerPage: 20, // 每页最多显示的记录条数
+					totalPages: data.pageInfo.pages, // 总页数
+					totalRows: data.pageInfo.total, // 总记录条数
+					visiblePageLinks: 3, // 显示几个卡片
+					showGoToPage: true,
+					showRowsPerPage: true,
+					showRowsInfo: true,
+					showRowsDefaultInfo: true,
+					//回调函数，用户每次点击分页插件进行翻页时候，就会触发该函数
+					onChangePage : function(event, obj){
+						//在此处将页码传入后台
+						//刷新页面  obj.currentPage:当前点击的页码   obj.rowsPerPage,
+						refresh(obj.currentPage,obj.rowsPerPage);
+					}
+				});
+			}
+		});
+	}
+	//日历插件
+	//起始时间
+	$("#startTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd hh:ii:ss",//显示格式
+		minView: "hour",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
+	});
+	//结束时间
+	$("#endTime").datetimepicker({
+		language:  "zh-CN",
+		format: "yyyy-mm-dd hh:ii:ss",//显示格式
+		minView: "hour",//设置只显示到月份
+		initialDate: new Date(),//初始化当前日期
+		autoclose: true,//选中自动关闭
+		todayBtn: true, //显示今日按钮
+		clearBtn : true,
+		pickerPosition: "bottom-left"
+	});
+</script>

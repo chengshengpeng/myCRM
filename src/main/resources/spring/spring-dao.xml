@@ -67,7 +67,7 @@
         tk.mybatis.spring.mapper.MapperScannerConfigurer:传统和通用mapper
     -->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.bwxy.crm.settings.mapper"/>
+        <property name="basePackage" value="com.bwxy.crm.settings.mapper,com.bwxy.crm.workbench.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
