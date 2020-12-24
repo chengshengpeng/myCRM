@@ -17,4 +17,9 @@ import java.util.List;
  */
 public interface ActivityService {
     List<Activity> listAll(ActivityQueryVo activityQueryVo);
+
+
+    void addOrUpdateActivity(Activity activity);
+
+    Activity queryById(String id);
 }

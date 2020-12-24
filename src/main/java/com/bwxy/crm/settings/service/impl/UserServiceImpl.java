@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         user.setLoginPwd(loginPass);
         //在查询之前，要记得把一开始放入user中的客户端ip地址取出来，因为在查询数据库的时候，user被重新赋值了
         String address = user.getAllowIps();
-        //取出之后一定记得把一开始放入user对象中的客户端ip地址给置空
+        //取出之后一定记得把一开始放入user对象的客户端ip地址给置空
         user.setAllowIps(null);
         //在进行查询的时候，此时的user中包含了一定数量的ip地址
          user = userMapper.selectOne(user);

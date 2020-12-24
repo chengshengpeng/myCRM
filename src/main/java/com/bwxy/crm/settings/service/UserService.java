@@ -2,6 +2,8 @@ package com.bwxy.crm.settings.service;
 
 import com.bwxy.crm.settings.bean.User;
 
+import java.util.List;
+
 /**
  * @ProjectName: crm
  * @Package: com.bwxy.crm.settings.service
@@ -14,4 +16,8 @@ import com.bwxy.crm.settings.bean.User;
  */
 public interface UserService {
     User login(User user);
+
+    List<User> queryAllUser();
+
+    /*List<User> queryAllUser();*/
 }

@@ -15,7 +15,11 @@ public enum CrmExceptionEnum {
     LOGIN_ACCOUNT_EXCEPTION("001","用户名或密码错误！"),
     LOGIN_EXPIRE_EXCEPTION("001","该用户已失效！"),
     LOGIN_LOCK_EXCEPTION("001","账户被锁定，请联系管理员！"),
-    LOGIN_IP_EXCEPTION("001","非法的ip地址！");
+    LOGIN_IP_EXCEPTION("001","非法的ip地址！"),
+
+    //市场活动等异常
+    ACTIVITY_CREATE_EXCEPTION("002","市场活动添加失败！"),
+    ACTIVITY_EDIT_EXCEPTION("002","市场活动修改失败！");
 
 
 

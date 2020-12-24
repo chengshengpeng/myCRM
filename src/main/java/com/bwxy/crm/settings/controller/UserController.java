@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -56,6 +57,7 @@ public class UserController {
     }
     //异步查询所有用户信息
     @RequestMapping("/queryAllUser")
+    @ResponseBody
     public List<User> queryAllUser(){
 
         return userService.queryAllUser();

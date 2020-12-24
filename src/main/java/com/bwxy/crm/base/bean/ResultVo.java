@@ -28,13 +28,45 @@ public class ResultVo<T> {
     //每页的数据
     private List<Activity> dataList;*/
     //包含了分页操作中的所有参数，以及所有的市场活动信息
-    private PageInfo<Activity> pageInfo;
 
+
+
+    //定义一个标记 表示操作是否成功
+    private boolean flag ;
+
+
+   //代表后台给前台响应的信息
+   private String mess;
+    private PageInfo<Activity> pageInfo;
     public PageInfo<Activity> getPageInfo() {
         return pageInfo;
     }
 
+    public ResultVo() {
+    }
+
     public void setPageInfo(PageInfo<Activity> pageInfo) {
         this.pageInfo = pageInfo;
+    }
+
+    public ResultVo(boolean flag, String mess) {
+        this.flag = flag;
+        this.mess = mess;
+    }
+
+    public String getMess() {
+        return mess;
+    }
+
+    public void setMess(String mess) {
+        this.mess = mess;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 }
